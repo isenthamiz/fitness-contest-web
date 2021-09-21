@@ -30,7 +30,9 @@ const RoundedButton = styled.button`
 `;
 
 const Button = function (props) {
-  return <RoundedButton>{props.children}</RoundedButton>;
+  return (
+    <RoundedButton onClick={props.buttonClick}>{props.children}</RoundedButton>
+  );
 };
 
 export default Button;

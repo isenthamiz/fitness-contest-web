@@ -1,7 +1,13 @@
 import React from "react";
 import Button from "./button";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {
+  DirectionsRun,
+  DirectionsBike,
+  Pool,
+  NaturePeople,
+} from "@mui/icons-material";
 
 const Wrapper = styled.section`
   display: flex;
@@ -11,17 +17,31 @@ const Wrapper = styled.section`
   margin: 0em 10em;
 `;
 
+const style = {
+  "font-size": "8rem",
+};
+
 const Dashboard = function () {
+  const history = useHistory();
+
+  const handleButtonClick = () => {
+    history.push("/cycling");
+  };
+
   return (
     <Wrapper>
       <Button>
-        <Link to="/running">Running</Link>
+        <DirectionsRun sx={style} />
+      </Button>
+      <Button buttonClick={handleButtonClick}>
+        <DirectionsBike sx={style} />
       </Button>
       <Button>
-        <Link to="/cycling">Cycling</Link>
+        <Pool sx={style} />
       </Button>
-      <Button>Swmming</Button>
-      <Button>Trecking</Button>
+      <Button>
+        <NaturePeople sx={style} />
+      </Button>
     </Wrapper>
   );
 };
