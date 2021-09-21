@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,6 +18,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { Settings, Home } from "@mui/icons-material";
+import { DirectionsRun, DirectionsBike } from "@mui/icons-material";
 
 import AppContext from "../store/context/app-context";
 
@@ -28,7 +31,10 @@ const DrawerHeader = styled.section`
 `;
 
 const SideBar = function (props) {
+  const history = useHistory();
+
   const { setDrawerOpen, setSettingsOpen } = useContext(AppContext);
+
   return (
     <Drawer
       sx={{
@@ -56,10 +62,11 @@ const SideBar = function (props) {
           key="home"
           onClick={() => {
             setDrawerOpen(false);
+            history.push("/");
           }}
         >
           <ListItemIcon>
-            <MailIcon />
+            <Home />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
@@ -72,7 +79,7 @@ const SideBar = function (props) {
           }}
         >
           <ListItemIcon>
-            <MailIcon />
+            <DirectionsRun />
           </ListItemIcon>
           <ListItemText primary="Running" />
         </ListItem>
@@ -85,7 +92,7 @@ const SideBar = function (props) {
           }}
         >
           <ListItemIcon>
-            <MailIcon />
+            <DirectionsBike />
           </ListItemIcon>
           <ListItemText primary="Cycling" />
         </ListItem>
@@ -99,7 +106,7 @@ const SideBar = function (props) {
           }}
         >
           <ListItemIcon>
-            <MailIcon />
+            <Settings />
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>

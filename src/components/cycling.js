@@ -17,12 +17,15 @@ const board_data = [
     name: "Bruce Wayne",
     img_url: "/static/images/avatar/2.jpg",
     total_distance: "50km",
+    direction: "DOWN",
   },
   {
     id: 3,
     name: "Senthamiz Kumaran",
     img_url: "/static/images/avatar/3.jpg",
     total_distance: "49km",
+    you: true,
+    direction: "UP",
   },
   {
     id: 4,
@@ -35,6 +38,7 @@ const board_data = [
     name: "Annamalai Ponnaiyah",
     img_url: "/static/images/avatar/5.jpg",
     total_distance: "30km",
+    direction: "DOWN",
   },
 ];
 

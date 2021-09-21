@@ -7,6 +7,12 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import { ArrowCircleUp, ArrowCircleDown } from "@mui/icons-material";
+
+const style = {
+  background: "#ad508d",
+  color: "white",
+};
 
 const LeadersBoard = ({ data }) => {
   return (
@@ -15,7 +21,10 @@ const LeadersBoard = ({ data }) => {
         {data.map((player) => {
           return (
             <div key={player.id}>
-              <ListItem alignItems="flex-start">
+              <ListItem
+                alignItems="flex-start"
+                sx={player.you ? style : undefined}
+              >
                 <ListItemAvatar>
                   <Avatar alt={player.name} src={player.img_url} />
                 </ListItemAvatar>
@@ -35,6 +44,11 @@ const LeadersBoard = ({ data }) => {
                     </React.Fragment>
                   }
                 />
+                {player.direction == "UP" ? (
+                  <ArrowCircleUp />
+                ) : player.direction == "DOWN" ? (
+                  <ArrowCircleDown />
+                ) : undefined}
               </ListItem>
               <Divider variant="inset" component="li" />
             </div>
