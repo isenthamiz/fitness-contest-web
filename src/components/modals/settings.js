@@ -16,13 +16,23 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display: "flex",
+  "flex-direction": "column",
 };
+
+const RowContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Button = styled.button`
   background: #ad508d;
   color: whitesmoke;
   font-size: 1em;
   margin: 1em;
+  width: 100px;
   padding: 0.5em 1em;
   border: 2px solid #ad508d;
   border-radius: 3px;
@@ -53,10 +63,10 @@ const Settings = (props) => {
     setSettingsOpen(false);
   };
 
-  useEffect(() => {
-    console.log("ok");
+  const onFocus = () => {
+    console.log("tab is on focus");
     setAccessToken(new Cookies().get("access_token"));
-  }, []);
+  };
 
   const redirect = function () {
     window.open("http://localhost:9000/oauth/redirect");
@@ -81,10 +91,15 @@ const Settings = (props) => {
         setLoading(false);
       }
     );
-
-    console.log(new Cookies().get("access_token"));
-    setAccessToken(new Cookies().get("access_token"));
   };
+
+  useEffect(() => {
+    window.addEventListener("focus", onFocus);
+
+    return () => {
+      window.removeEventListener("focus", onFocus);
+    };
+  });
 
   return (
     <div>
@@ -95,15 +110,19 @@ const Settings = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {loading ? (
-            <h3>Data is Loading ... </h3>
-          ) : (
-            <h3>Press Load Data Button to Load new Data</h3>
-          )}
-          <Button onClick={redirect} disabled={accesstoken ? true : false}>
-            Authorize
-          </Button>
-          <Button onClick={load_data}>Load Data</Button>
+          {loading ? <h3>Data is Loading ... </h3> : <h3>Strava Connect</h3>}
+          <RowContainer>
+            <label>Authorize with Strava Account</label>
+            <Button onClick={redirect} disabled={accesstoken ? true : false}>
+              Authorize
+            </Button>
+          </RowContainer>
+          <RowContainer>
+            <label>Load your data</label>
+            <Button onClick={load_data} disabled={accesstoken ? false : true}>
+              Load
+            </Button>
+          </RowContainer>
         </Box>
       </Modal>
     </div>
