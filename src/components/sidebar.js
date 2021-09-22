@@ -19,7 +19,12 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Settings, Home } from "@mui/icons-material";
-import { DirectionsRun, DirectionsBike } from "@mui/icons-material";
+import {
+  DirectionsRun,
+  DirectionsBike,
+  Pool,
+  NaturePeople,
+} from "@mui/icons-material";
 
 import AppContext from "../store/context/app-context";
 
@@ -95,6 +100,32 @@ const SideBar = function (props) {
             <DirectionsBike />
           </ListItemIcon>
           <ListItemText primary="Cycling" />
+        </ListItem>
+
+        <ListItem
+          button
+          key="swimming"
+          onClick={() => {
+            setDrawerOpen(false);
+          }}
+        >
+          <ListItemIcon>
+            <Pool />
+          </ListItemIcon>
+          <ListItemText primary="Swimming" />
+        </ListItem>
+
+        <ListItem
+          button
+          key="trekking"
+          onClick={() => {
+            setDrawerOpen(false);
+          }}
+        >
+          <ListItemIcon>
+            <NaturePeople />
+          </ListItemIcon>
+          <ListItemText primary="Trekking" />
         </ListItem>
 
         <ListItem

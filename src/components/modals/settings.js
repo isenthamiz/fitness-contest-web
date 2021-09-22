@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import AppContext from "../../store/context/app-context";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 const request = require("request");
 
 const style = {
@@ -24,6 +25,13 @@ const RowContainer = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+`;
+
+const CloseRowContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -51,6 +59,16 @@ const Button = styled.button`
   &:hover {
     background: #555;
     border-color: #555;
+  }
+`;
+
+const CloseButton = styled(Button)`
+  background: #555;
+  border-color: #555;
+
+  &:hover {
+    background: #df1f1f;
+    border-color: #df1f1f;
   }
 `;
 
@@ -110,7 +128,7 @@ const Settings = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {loading ? <h3>Data is Loading ... </h3> : <h3>Strava Connect</h3>}
+          {loading ? <LinearProgress /> : undefined}
           <RowContainer>
             <label>Authorize with Strava Account</label>
             <Button onClick={redirect} disabled={accesstoken ? true : false}>
@@ -123,6 +141,9 @@ const Settings = (props) => {
               Load
             </Button>
           </RowContainer>
+          <CloseRowContainer>
+            <CloseButton onClick={handleClose}>Close</CloseButton>
+          </CloseRowContainer>
         </Box>
       </Modal>
     </div>
